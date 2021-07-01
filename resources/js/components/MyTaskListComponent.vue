@@ -88,11 +88,12 @@
                     this.sort_asc ? (set = 1) : (set = -1);
                         if (this.sort_key == importance) {
                             this.tasks.sort((a,b) => {
-                                console.log(this.sort_key);
-                                if (desiredSort.indexOf(a) - desiredSort.indexOf(b)) return 1 * set;
+                                if (desiredSort.indexOf(a[this.sort_key]) - desiredSort.indexOf(b[this.sort_key])) return 1 * set;
                                 if (desiredSort.indexOf(b) - desiredSort.indexOf(a)) return -1 * set;
                                 return 0;
                             });
+                            console.log(this.sort_key);
+                            console.log(this.tasks)
                             return this.tasks;
                         }else{
                         this.tasks.sort((a,b) => {
