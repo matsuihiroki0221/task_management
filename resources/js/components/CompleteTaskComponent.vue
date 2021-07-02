@@ -70,13 +70,13 @@
             sort_tasks() {
                 if (this.sort_key != "") {
                     let set = 1 ;
-                    let desiredSort = ["小", "中","大"];
-                    let importance = "importance"
+                    let desiredSort = ["小", "中", "大"];
                     this.sort_asc ? (set = 1) : (set = -1);
-                        if (this.sort_key == importance) {
+                        if (this.sort_key == "importance") {
                             this.tasks.sort((a,b) => {
-                                if (desiredSort.indexOf(a[this.tasks.importance]) - desiredSort.indexOf(b[this.tasks.importance])) return 1 * set;
-                                if (desiredSort.indexOf(b[this.tasks.importance]) - desiredSort.indexOf(a[this.tasks.importance])) return -1 * set;
+                                console.log(this.tasks.importance);
+                                if (desiredSort.indexOf(a[this.sort_key]) < desiredSort.indexOf(b[this.sort_key])) return -1 * set;
+                                if (desiredSort.indexOf(a[this.sort_key]) > desiredSort.indexOf(b[this.sort_key])) return 1 * set;
                                 return 0;
                             });
                             console.log(this.sort_key);

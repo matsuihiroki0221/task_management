@@ -9,11 +9,17 @@ import TaskEdit from "./views/MyTask/TaskEdit";
 import ProjectCreate from "./views/Project/ProjectCreate";
 import ProjectDetail from "./views/Project/ProjectDetail";
 import ProjectEdit from "./views/Project/ProjectEdit";
+import Login from "./Login/Login";
 Vue.use(Router);
 
 export default new Router ({
   mode: "history",
   routes: [
+    {
+      path: '/login',
+      name:'Login',
+      component: Login,
+    },
     {
       path: '/1',
       name: 'Home',
@@ -27,9 +33,9 @@ export default new Router ({
       props: true
     },
     {
-       path: '/task_create',
-       name: 'task_create',
-       component: TaskCreate
+      path: '/task_create',
+      name: 'task_create',
+      component: TaskCreate
     },
     {
       path: '/project_create',
