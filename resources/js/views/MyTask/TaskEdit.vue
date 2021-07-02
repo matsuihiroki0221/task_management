@@ -45,7 +45,11 @@
                         <validation-provider name="importance" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
                                 <label for="importance" class="col-sm-3 col-form-label">Importance</label>
-                                <input type="text" class="col-sm-9 form-control" id="importance" v-model="task.importance">
+                                 <select v-model="task.importance" class="col-sm-9 form-control">
+                                    <option>大</option>
+                                    <option>中</option>
+                                    <option>小</option>
+                                </select>
                                 <span class="text-danger"> {{ errors[0] }}</span>
                             </div>
                         </validation-provider>

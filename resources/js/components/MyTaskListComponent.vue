@@ -89,7 +89,7 @@
                         if (this.sort_key == importance) {
                             this.tasks.sort((a,b) => {
                                 if (desiredSort.indexOf(a[this.sort_key]) - desiredSort.indexOf(b[this.sort_key])) return 1 * set;
-                                if (desiredSort.indexOf(b) - desiredSort.indexOf(a)) return -1 * set;
+                                if (desiredSort.indexOf(a[this.sort_key]) - desiredSort.indexOf(b[this.sort_key])) return -1 * set;
                                 return 0;
                             });
                             console.log(this.sort_key);
