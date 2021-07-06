@@ -11,14 +11,16 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $credentials = $request -> validate([
-            'email' => 'required|email|string',
-            'password' => 'required|string'
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
         if (Auth::attempt($credentials)) {
-            return response()-> json(['message' => 'Login successful'],200);
+            $request->session()->regenerate();
+
+            return redirect()->intended('dashboard');
         }
-        throw ValidationException::withMessages([
-            'password' => ['The provided credentials are incorrect'],
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
         ]);
     }
     public function logout(){

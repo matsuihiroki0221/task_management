@@ -37,11 +37,11 @@ export default {
             axios.get("/sanctum/csrf-cookie").then(response => {
                 axios
                     .post("/api/login", {
-                        id: this.id,
+                        email: this.email,
                         password: this.password
                     })
                     .then(response => {
-                        conosole.log(this.id);
+                        console.log(this.email);
                         console.log(response);
                         localStorage.setItem("auth", "ture");
                         this.$router.push("/about");
@@ -49,7 +49,7 @@ export default {
                     .catch(error => {
                         this.errors = error.response.data.errors;
                         console.log(this.errors);
-                        console.log(this.id);
+                        console.log(this.email);
                     });
             });
         }
