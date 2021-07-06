@@ -1,4 +1,5 @@
 //import { vue } from "laravel-mix";
+
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home";
@@ -10,15 +11,23 @@ import ProjectCreate from "./views/Project/ProjectCreate";
 import ProjectDetail from "./views/Project/ProjectDetail";
 import ProjectEdit from "./views/Project/ProjectEdit";
 import Login from "./Login/Login";
+import About from "./Login/About";
 Vue.use(Router);
 
-export default new Router ({
+const router =  new Router ({
   mode: "history",
   routes: [
     {
       path: '/login',
-      name:'Login',
+      name:'login',
       component: Login,
+      meta: { guestOnly: true }
+    },
+    {
+      path: "/about",
+      name: "about",
+      component: About,
+      meta: { authOnly: true }
     },
     {
       path: '/1',
@@ -68,3 +77,26 @@ export default new Router ({
     }
   ]
 });
+
+function isLoggedIn() {
+  return localStorage.getItem("auth");
+}
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authOnly)) {
+      if (!isLoggedIn()) {
+          next("/login");
+      } else {
+          next();
+      }
+  } else if (to.matched.some(record => record.meta.guestOnly)) {
+      if (isLoggedIn()) {
+          next("/about");
+      } else {
+          next();
+      }
+  } else {
+      next();
+  }
+});
+export default router;

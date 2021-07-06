@@ -7,19 +7,19 @@ use App\task;
 
 class TaskController extends Controller
 {
-    public function index() 
-    {              
+    public function index()
+    {
         $tasks = task::where('user_id', '1' )
-            ->where('done','0')            
-             ->get();
+            ->where('done','0')
+            ->get();
         return $tasks;
-        
+
     }
     public function completeindex()
     {
         $tasks = task::where('user_id', '1' )
-            ->where('done','1')            
-             ->get();
+            ->where('done','1')
+            ->get();
         return $tasks;
     }
     public function detail(task $task)  {
@@ -33,8 +33,8 @@ class TaskController extends Controller
         $task->update($request->all());
         return $task;
     }
-   public function delete(task $task) {
-       $task->delete();
-       return $task;
-   }
+    public function delete(task $task) {
+        $task->delete();
+        return $task;
+    }
 }

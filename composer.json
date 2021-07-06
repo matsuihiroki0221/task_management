@@ -55,12 +55,8 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-<<<<<<< HEAD
         "sort-packages": true,
         "disable-tls": false
-=======
-        "sort-packages": true
->>>>>>> origin/master
     },
     "minimum-stability": "dev",
     "prefer-stable": true

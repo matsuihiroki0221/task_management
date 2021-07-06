@@ -12,14 +12,12 @@
             </tr>
             </thead>
             <tbody>
-                <tr v-for="(task,index) in sort_tasks" :key="index">
-                <td>{{  task.title }}</td>
-                <router-link v-bind:to="{ name: 'task_detail',params: {taskId:task.id}}">
-                <td>{{ task.content }}</td>
+                <router-link v-bind:to="{ name: 'task_detail',params: {taskId:task.id}}" v-for="(task,index) in sort_tasks" :key="index" tag="tr">
+                    <td>{{  task.title }}</td>
+                    <td>{{ task.content }}</td>
+                    <td>{{ task.importance }}</td>
+                    <td> {{ task.time_limit }}</td>
                 </router-link>
-                <td>{{ task.importance }}</td>
-                <td> {{ task.time_limit }}</td>
-                </tr>
             </tbody>
         </table>
     </div>

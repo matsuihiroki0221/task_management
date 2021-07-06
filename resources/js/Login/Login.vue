@@ -1,27 +1,58 @@
 <template>
-    <form v-on:submit.prevent="doLogin">
-      <label>User ID</label>
-      <input type=" text" placeholder="your id" v-model="user.Id" >
-      <label>Password</label>
-      <input type="password" placeholder="password" v-model="user.password">
-      <button type="submit"> Sign In</button>
-    </form>
+    <div>
+        <form @submit.prevent="login">
+            <div>
+                <label>id</label>
+                <label>email</label>
+                <input type="text" v-model="email">
+                <span v-if="errors.email">
+                    {{ errors.email[0] }}
+                </span>
+            </div>
+
+            <div>
+                <label>パスワード</label>
+                <input type="password" v-model="password">
+                <span v-if="errors.password">
+                    {{ errors.password[0] }}
+                </span>
+            </div>
+
+            <button>ログイン</button>
+        </form>
+    </div>
 </template>
+
 <script>
-export default({
-  data() {
-    return {
-      user: {}
-    };
-  },
+export default {
+    data() {
+        return {
+            email: "",
+            password: "",
+            errors: []
+        };
+    },
     methods: {
-      doLogin() {
-        this.$store.dispatch("auth", {
-          userId: this.user.userId,
-          userToken: 'dummy token'
-        });
-        this.$router,push(this.$route.query.redirect);
-      }
+        login() {
+            axios.get("/sanctum/csrf-cookie").then(response => {
+                axios
+                    .post("/api/login", {
+                        id: this.id,
+                        password: this.password
+                    })
+                    .then(response => {
+                        conosole.log(this.id);
+                        console.log(response);
+                        localStorage.setItem("auth", "ture");
+                        this.$router.push("/about");
+                    })
+                    .catch(error => {
+                        this.errors = error.response.data.errors;
+                        console.log(this.errors);
+                        console.log(this.id);
+                    });
+            });
+        }
     }
-  })
+};
 </script>

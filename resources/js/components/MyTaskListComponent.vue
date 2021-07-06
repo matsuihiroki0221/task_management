@@ -12,14 +12,12 @@
             </tr>
             </thead>
             <tbody>
-                <tr v-for="(task,index) in sort_tasks" :key="index"  v-bind:class="yellowcolor(task.time_limit)">
-                <td>{{  task.title }}</td>
-                <router-link v-bind:to="{ name: 'task_detail',params: {taskId:task.id}}">
-                <td>{{ task.content }}</td>
+                <router-link v-bind:to="{ name: 'task_detail',params: {taskId:task.id}}" v-for="(task,index) in sort_tasks" :key="index"  v-bind:class="yellowcolor(task.time_limit)" tag="tr">
+                    <td>{{  task.title }}</td>
+                    <td>{{ task.content }}</td>
+                    <td>{{ task.importance }}</td>
+                    <td> {{ task.time_limit }}</td>
                 </router-link>
-                <td>{{ task.importance }}</td>
-                <td> {{ task.time_limit }}</td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -71,13 +69,15 @@
                     this.tasks = res.data;
                     console.log(res);
                     this.today = new Date();
+                    /*
                     console.log(this.today);
+                    */
                     console.log(this.tasks)
                     let Tasklist = this.tasks;
                     for (let Task of Tasklist) {
-                        console.log(Task);
+                        /*console.log(Task); */
                         let tasklimit = new Date(Task.time_limit);
-                        console.log(tasklimit);
+                        /*console.log(tasklimit);*/
                         let daysleft = (tasklimit - this.today)/86400000;
                             if(daysleft < 7 ){
                             alert(`${Task.title}の期限が一週間を切っています`);
