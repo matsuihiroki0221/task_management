@@ -3,28 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+
     public function login(Request $request)
     {
-        $credentials = $request -> validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
         ]);
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+        if(Auth::attempt($credentials)){
+            return response()->json(['status_code' => 200,'message' => 'success'],200);
+        } else {
+            return response()->json(['status_code' => 500,'message' => 'Unauthorized'],200);
         }
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
     }
-    public function logout(){
+
+    public function logout()
+    {
         Auth::logout();
-        return response()->json(['message' => 'Logged out'],200);
+        return response()->json(['status_code' => 200,'message' => 'Logged out'], 200);
     }
+
 }

@@ -21,13 +21,13 @@ const router =  new Router ({
       path: '/login',
       name:'login',
       component: Login,
-      meta: { guestOnly: true }
+      /* meta: { guestOnly: true } */
     },
     {
       path: "/about",
       name: "about",
       component: About,
-      meta: { authOnly: true }
+      /* meta: { authOnly: true } */
     },
     {
       path: '/1',

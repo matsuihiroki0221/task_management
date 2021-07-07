@@ -1,57 +1,52 @@
 <template>
     <div>
+        <h2>Login</h2>
+        <p class="mt-2 text-danger">{{ getUserMessage }}</p>
         <form @submit.prevent="login">
-            <div>
-                <label>id</label>
-                <label>email</label>
-                <input type="text" v-model="email">
-                <span v-if="errors.email">
-                    {{ errors.email[0] }}
-                </span>
-            </div>
-
-            <div>
-                <label>パスワード</label>
-                <input type="password" v-model="password">
-                <span v-if="errors.password">
-                    {{ errors.password[0] }}
-                </span>
-            </div>
-
-            <button>ログイン</button>
+            <label><input v-model="email" placeholder="email"></label>
+            <label><input v-model="pass" placeholder="password"></label>
+            <br>
+            <button type="submit">ログイン</button>
         </form>
     </div>
 </template>
-
 <script>
 export default {
     data() {
         return {
-            email: "",
-            password: "",
-            errors: []
+            email: '',
+            pass: '',
+            error: false,
+            getUserMessage: ""
         };
     },
     methods: {
         login() {
-            axios.get("/sanctum/csrf-cookie").then(response => {
-                axios
-                    .post("/api/login", {
+            axios.defaults.headers.common = {
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+            };
+            axios.get('/sanctum/csrf-cookie')
+                .then((res) => {
+                    axios.post('/api/login', {
                         email: this.email,
-                        password: this.password
+                        password: this.pass,
                     })
-                    .then(response => {
-                        console.log(this.email);
-                        console.log(response);
-                        localStorage.setItem("auth", "ture");
-                        this.$router.push("/about");
+                    .then((res) => {
+                        if( res.data.status_code == 200 ) {
+                            this.$router.push("/about");
+                        }
+                        this.getUserMessage = 'ログインに失敗しました。';
+                        console.log(res);
                     })
-                    .catch(error => {
-                        this.errors = error.response.data.errors;
-                        console.log(this.errors);
-                        console.log(this.email);
-                    });
-            });
+                    .catch((err) => {
+                        console.log(err);
+                        this.getUserMessage = 'ログインに失敗しました。'
+                    })
+                })
+                .catch((err) => {
+                //
+                })
         }
     }
 };

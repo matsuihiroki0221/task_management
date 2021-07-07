@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\controllers\TaskController;
 use App\Http\controllers\ProjectController;
 use App\Http\controllers\LoginController;
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
   return $request->user();
 });
+/* Route::get('/user', function (Request $request) {
+return $request->user();
+})->middleware('auth:admin'); */
+
 
 Route::post('/login',[LoginController::class,'login']);
 Route::post('/logout',[LoginController::class,'logout']);
