@@ -25,8 +25,8 @@ return $request->user();
 })->middleware('auth:admin'); */
 
 
-Route::post('/login',[LoginController::class,'login']);
-Route::post('/logout',[LoginController::class,'logout']);
+Route::post('/login',[App\Http\Controllers\LoginController::class,'login']);
+Route::post('/logout',[App\Http\Controllers\LoginController::class,'logout']);
 //TaskController
 Route::get('/tasks',[TaskController::class,'index']);
 Route::post('/tasks',[TaskController::class,'store']);

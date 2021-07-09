@@ -22,10 +22,6 @@ export default {
     },
     methods: {
         login() {
-            axios.defaults.headers.common = {
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-            };
             axios.get('/sanctum/csrf-cookie')
                 .then((res) => {
                     axios.post('/api/login', {
@@ -36,8 +32,7 @@ export default {
                         if( res.data.status_code == 200 ) {
                             this.$router.push("/about");
                         }
-                        this.getUserMessage = 'ログインに失敗しました。';
-                        console.log(res);
+                        this.getUserMessage = 'ログインに失敗しました。'
                     })
                     .catch((err) => {
                         console.log(err);

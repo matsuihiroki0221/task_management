@@ -11,7 +11,7 @@
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
                         </validation-provider>
-                        <validation-provider name="project_title" rules="required" v-slot="{ errors }"> 
+                        <validation-provider name="project_title" rules="required" v-slot="{ errors }">
                             <div class="form-group row" >
                                 <label for="project_title" class="col-sm-3 col-form-label">Project Title</label>
                                 <select v-model="task.project_title" id="project_title" class="col-sm-9 form-control" >

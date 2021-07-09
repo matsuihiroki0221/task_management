@@ -27,8 +27,18 @@
         "webpack-cli": "^4.7.2"
     },
     "dependencies": {
+        "constant": "^1.0.2",
+        "fs": "^0.0.1-security",
+        "path": "^0.12.7",
+        "stream": "^0.0.2",
         "vee-validate": "^3.4.9",
         "vue-router": "^3.5.2",
-        "vuex": "^3.6.2"
+        "vuex": "^3.6.2",
+        "webpack": "^5.44.0"
+    },
+    "browser": {
+        "fs": false,
+        "path": false,
+        "os": false
     }
 }

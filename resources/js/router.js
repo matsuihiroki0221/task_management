@@ -33,52 +33,60 @@ const router =  new Router ({
       path: '/1',
       name: 'Home',
       component:Home,
-      props: true
+      props: true,
+      /* meta: { authOnly : true} */
     },
     {
       path:'/tasks/:taskId',
       name: 'task_edit',
       component: TaskEdit,
-      props: true
+      props: true,
+     /*  meta: { authOnly : true} */
     },
     {
       path: '/task_create',
       name: 'task_create',
-      component: TaskCreate
+      component: TaskCreate,
+      /* meta: { authOnly : true} */
     },
     {
       path: '/project_create',
       name: 'project_create',
       component: ProjectCreate,
+      meta: { authOnly : true}
     },
     {
       path:'/taskdetail/:taskId',
       name: 'task_detail',
       component:TaskDetail,
-      props: true
+      props: true,
+      meta: { authOnly : true}
     },
     {
       path:'/everytasklist/:projectId',
       name:'every_task_detail',
       component:EveryTaskList,
       props: true,
+      meta: { authOnly : true}
     },
     {
       path:'/projectdetail/:projectId',
       name:'project_detail',
       component:ProjectDetail,
-      props:true
+      props:true,
+      meta: { authOnly : true}
     },
     {
       path:'/projects/:projectId',
       name:'project_edit',
       component:ProjectEdit,
-      props:true
+      props:true,
+      meta: { authOnly : true}
     }
   ]
 });
 
-function isLoggedIn() {
+/* function isLoggedIn() {
   return localStorage.getItem("auth");
 }
 
@@ -98,5 +106,5 @@ router.beforeEach((to, from, next) => {
   } else {
       next();
   }
-});
+});*/
 export default router;
