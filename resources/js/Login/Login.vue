@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="container">
+        <div class="col-sm-6">
         <h2>Login</h2>
         <p class="mt-2 text-danger">{{ getUserMessage }}</p>
         <form @submit.prevent="login">
@@ -8,6 +9,7 @@
             <br>
             <button type="submit">ログイン</button>
         </form>
+        </div>
     </div>
 </template>
 <script>
@@ -30,7 +32,8 @@ export default {
                     })
                     .then((res) => {
                         if( res.data.status_code == 200 ) {
-                            this.$router.push("/about");
+                            localStorage.setItem("auth", "ture");
+                            this.$router.push({ name: 'Home'});
                         }
                         this.getUserMessage = 'ログインに失敗しました。'
                     })

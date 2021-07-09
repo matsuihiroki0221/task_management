@@ -18,36 +18,36 @@ const router =  new Router ({
   mode: "history",
   routes: [
     {
-      path: '/login',
+      path: '/',
       name:'login',
       component: Login,
-      /* meta: { guestOnly: true } */
+      meta: { guestOnly: true }
     },
     {
       path: "/about",
       name: "about",
       component: About,
-      /* meta: { authOnly: true } */
+      meta: { authOnly: true }
     },
     {
-      path: '/1',
+      path: '/home/1',
       name: 'Home',
       component:Home,
       props: true,
-      /* meta: { authOnly : true} */
+      meta: { authOnly : true}
     },
     {
       path:'/tasks/:taskId',
       name: 'task_edit',
       component: TaskEdit,
       props: true,
-     /*  meta: { authOnly : true} */
+      meta: { authOnly : true}
     },
     {
       path: '/task_create',
       name: 'task_create',
       component: TaskCreate,
-      /* meta: { authOnly : true} */
+      meta: { authOnly : true}
     },
     {
       path: '/project_create',
@@ -86,14 +86,14 @@ const router =  new Router ({
   ]
 });
 
-/* function isLoggedIn() {
+function isLoggedIn() {
   return localStorage.getItem("auth");
 }
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.authOnly)) {
       if (!isLoggedIn()) {
-          next("/login");
+          next("/");
       } else {
           next();
       }
@@ -106,5 +106,5 @@ router.beforeEach((to, from, next) => {
   } else {
       next();
   }
-});*/
+});
 export default router;

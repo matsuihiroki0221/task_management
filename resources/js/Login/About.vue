@@ -23,7 +23,8 @@ export default {
             axios.post("api/logout")
                 .then(response => {
                     console.log(response);
-                    this.$router.push("/login");
+                    localStorage.removeItem("auth");
+                    this.$router.push({ name: "login"});
                 })
                 .catch(error => {
                     console.log(error);
