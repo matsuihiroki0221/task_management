@@ -19,7 +19,8 @@ export default {
             email: '',
             pass: '',
             error: false,
-            getUserMessage: ""
+            getUserMessage: "",
+            user:{}
         };
     },
     methods: {
@@ -33,7 +34,13 @@ export default {
                     .then((res) => {
                         if( res.data.status_code == 200 ) {
                             localStorage.setItem("auth", "ture");
-                            this.$router.push({ name: 'Home'});
+                            axios.get('/api/user')
+                            .then(res => {
+                                this.user = res.data;
+                                this.$store.commit('setuser' , this.user);
+                                console.log(this.user)
+                            })
+                                .then(this.$router.push({ name: 'Home'}))
                         }
                         this.getUserMessage = 'ログインに失敗しました。'
                     })

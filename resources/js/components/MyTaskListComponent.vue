@@ -65,14 +65,13 @@
                 };
             },
             getTasks() {
-                axios.get('/api/tasks').then((res) => {
+                axios.get('/api/tasks/list/' + this.$store.state.user.id)
+                .then((res) => {
                     this.tasks = res.data;
                     console.log(res);
                     this.today = new Date();
-                    /*
-                    console.log(this.today);
-                    */
-                    console.log(this.tasks)
+                    /* console.log(this.today);
+                    console.log(this.tasks); */
                     let Tasklist = this.tasks;
                     for (let Task of Tasklist) {
                         /*console.log(Task); */
@@ -84,7 +83,8 @@
                             console.log(daysleft);
                             };
                 };
-                })
+                }
+                )
                 .catch((err) => {
                     console.log(err)
                 });
@@ -99,13 +99,13 @@
                     this.sort_asc ? (set = 1) : (set = -1);
                         if (this.sort_key == importance) {
                             this.tasks.sort((a,b) => {
-                                console.log(this.tasks.importance);
+                                /* console.log(this.tasks.importance); */
                                 if (desiredSort.indexOf(a[this.sort_key]) < desiredSort.indexOf(b[this.sort_key])) return -1 * set;
                                 if (desiredSort.indexOf(a[this.sort_key]) > desiredSort.indexOf(b[this.sort_key])) return 1 * set;
                                 return 0;
                             });
-                            console.log(this.sort_key);
-                            console.log(this.tasks)
+                            /* console.log(this.sort_key);
+                            console.log(this.tasks) */
                             return this.tasks;
                         }else{
                         this.tasks.sort((a,b) => {
@@ -122,6 +122,7 @@
         },
         mounted() {
                 this.getTasks();
+                /* this.getUser(); */
         }
     }
 </script>

@@ -57,6 +57,10 @@
                 .then((res)=> {
                     this.project = res.data;
                     console.log(res);
+                })
+                .catch((err)=> {
+                    this.projects = res.data;
+                    console.log(err);
                 });
             },
             submit() {

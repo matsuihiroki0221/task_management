@@ -55,7 +55,7 @@
                 };
             },
             getTasks() {
-                axios.get('/api/completes').then((res) => {
+                axios.get('/api/completes/' + this.$store.state.user.id).then((res) => {
                     this.tasks = res.data;
                     console.log(res)
                 })
@@ -77,8 +77,8 @@
                                 if (desiredSort.indexOf(a[this.sort_key]) > desiredSort.indexOf(b[this.sort_key])) return 1 * set;
                                 return 0;
                             });
-                            console.log(this.sort_key);
-                            console.log(this.tasks)
+                            /* console.log(this.sort_key);
+                            console.log(this.tasks) */
                             return this.tasks;
                         }else{
                         this.tasks.sort((a,b) => {

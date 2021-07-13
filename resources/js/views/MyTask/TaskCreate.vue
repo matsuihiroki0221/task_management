@@ -7,7 +7,7 @@
                         <validation-provider name="userId" rules="required|numeric"  v-slot="{ errors }">
                             <div class="form-group row" >
                                 <label for="userId" class="col-sm-3 col-form-label">userId</label>
-                                <input type="text" class="col-sm-9 form-control" id="userId" v-model="task.user_id" placeholder="ユーザーIdを入力">
+                                <input type="text" class="col-sm-9 form-control" id="userId" v-model="task.user_id" readonly>
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
                         </validation-provider>
@@ -65,7 +65,14 @@
     export default {
         data:function() {
             return {
-                task: {},
+                task: {
+                    project_title:"",
+                    user_id:"",
+                    title:"",
+                    content: "",
+                    time_limit:"",
+                    importance: ""
+                        },
                 projects:{},
             }
             },
@@ -74,6 +81,7 @@
                     axios.get('/api/projects')
                     .then((res)=> {
                         this.projects = res.data;
+                        this.task.user_id = this.$store.state.user.id;
                         console.log(res)
                     })
                     .catch((err) => {
@@ -81,7 +89,7 @@
                     })
                 },
                 submit() {
-                    axios.post('/api/tasks',this.task)
+                    axios.post('/api/tasks/store',this.task)
                     .then((res)=> {
                         this.$router.push({name:'Home'});
                         console.log(res);

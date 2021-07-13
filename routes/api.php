@@ -28,8 +28,8 @@ return $request->user();
 Route::post('/login',[App\Http\Controllers\LoginController::class,'login']);
 Route::post('/logout',[App\Http\Controllers\LoginController::class,'logout']);
 //TaskController
-Route::get('/tasks',[TaskController::class,'index']);
-Route::post('/tasks',[TaskController::class,'store']);
+Route::get('/tasks/list/{userid}',[TaskController::class,'index']);
+Route::post('/tasks/store',[TaskController::class,'store']);
 Route::get('/tasks/{task}',[TaskController::class,'detail']);
 Route::put('/tasks/{task}',[TaskController::class,'update']);
 Route::delete('/tasks/{task}',[TaskController::class,'delete']);
@@ -40,4 +40,4 @@ Route::get('/projects/{project}',[ProjectController::class,'detail']);
 Route::put('/projects/{ project }',[ProjectController::class,'update']);
 Route::delete('/projects/{project}',[ProjectController::class,'delete']);
 //CompleteController
-Route::get('/completes',[TaskController::class,'completeindex']);
+Route::get('/completes/{userid}',[TaskController::class,'completeindex']);

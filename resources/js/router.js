@@ -30,7 +30,7 @@ const router =  new Router ({
       meta: { authOnly: true }
     },
     {
-      path: '/home/1',
+      path: '/home',
       name: 'Home',
       component:Home,
       props: true,
@@ -77,7 +77,7 @@ const router =  new Router ({
       meta: { authOnly : true}
     },
     {
-      path:'/projects/:projectId',
+      path:'/projectedit/:projectId',
       name:'project_edit',
       component:ProjectEdit,
       props:true,

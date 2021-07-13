@@ -7,7 +7,7 @@
                         <validation-provider  rules="required" v-slot="{ errors }">
                             <div class="form-group row">
                                 <label for="title" class="col-sm-3 col-form-label">Project Title</label>
-                                <input type="text" class="col-sm-9 form-control" id="title" 
+                                <input type="text" class="col-sm-9 form-control" id="title"
                                 v-model="project.title">
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>

@@ -4,20 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\task;
+use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request,$userid)
     {
-        $tasks = task::where('user_id', '1' )
+        Log::info('Showing the user profile for user: '.$userid);
+        $tasks = task::where('user_id', $userid )
             ->where('done','0')
             ->get();
         return $tasks;
 
     }
-    public function completeindex()
+    public function completeindex(Request $request,$userid)
     {
-        $tasks = task::where('user_id', '1' )
+        Log::info('Showing the user profile for user: '.$userid);
+        $tasks = task::where('user_id', $userid)
             ->where('done','1')
             ->get();
         return $tasks;
