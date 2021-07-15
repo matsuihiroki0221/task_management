@@ -1,4 +1,5 @@
 <template>
+<div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
@@ -35,12 +36,20 @@
             </div>
         </div>
     </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+</div>
+
 </template>
 
 <script>
     export default {
         props: ["projectId"],
-
         data:function (){
             return {
                 project: {}

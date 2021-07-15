@@ -29,6 +29,7 @@ Route::post('/login',[App\Http\Controllers\LoginController::class,'login']);
 Route::post('/logout',[App\Http\Controllers\LoginController::class,'logout']);
 //TaskController
 Route::get('/tasks/list/{userid}',[TaskController::class,'index']);
+Route::get('/tasks/allforproject/{projectid}',[TaskController::class,'allforproject']);
 Route::post('/tasks/store',[TaskController::class,'store']);
 Route::get('/tasks/{task}',[TaskController::class,'detail']);
 Route::put('/tasks/{task}',[TaskController::class,'update']);
@@ -37,7 +38,7 @@ Route::delete('/tasks/{task}',[TaskController::class,'delete']);
 Route::get('/projects',[ProjectController::class,'index']);
 Route::post('/projects',[ProjectController::class,'store']);
 Route::get('/projects/{project}',[ProjectController::class,'detail']);
-Route::put('/projects/{ project }',[ProjectController::class,'update']);
+Route::put('/projects/{project}',[ProjectController::class,'update']);
 Route::delete('/projects/{project}',[ProjectController::class,'delete']);
 //CompleteController
 Route::get('/completes/{userid}',[TaskController::class,'completeindex']);

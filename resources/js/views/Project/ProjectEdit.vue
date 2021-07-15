@@ -43,9 +43,7 @@
 
 <script>
     export default {
-        props: {
-            projectId:String
-        },
+        props: ["projectId"],
         data:function () {
             return {
                 project:{}
@@ -73,9 +71,9 @@
                     console.log(error);
                     });
         },
-        mounted() {
+    },
+    mounted() {
             this.getProject();
         }
-    }
     }
 </script>

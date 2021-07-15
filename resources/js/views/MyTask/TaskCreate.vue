@@ -67,6 +67,7 @@
             return {
                 task: {
                     project_title:"",
+                    project_id:"",
                     user_id:"",
                     title:"",
                     content: "",
@@ -89,6 +90,11 @@
                     })
                 },
                 submit() {
+                    let filtertask = this.task;
+                    let targetproject = this.projects.find((v) => v.title == this.task.project_title);
+                    console.log(targetproject);
+                    this.task.project_id = targetproject.id;
+                    console.log(this.task);
                     axios.post('/api/tasks/store',this.task)
                     .then((res)=> {
                         this.$router.push({name:'Home'});

@@ -23,6 +23,7 @@ export default {
             axios.post("api/logout")
                 .then(response => {
                     console.log(response);
+                    this.$store.commit('setuser' , {});
                     localStorage.removeItem("auth");
                     this.$router.push({ name: "login"});
                 })

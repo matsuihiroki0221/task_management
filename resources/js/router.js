@@ -10,6 +10,7 @@ import TaskEdit from "./views/MyTask/TaskEdit";
 import ProjectCreate from "./views/Project/ProjectCreate";
 import ProjectDetail from "./views/Project/ProjectDetail";
 import ProjectEdit from "./views/Project/ProjectEdit";
+import TaskforProject from "./components/TaskforProject";
 import Login from "./Login/Login";
 import About from "./Login/About";
 Vue.use(Router);
@@ -71,10 +72,17 @@ const router =  new Router ({
     },
     {
       path:'/projectdetail/:projectId',
-      name:'project_detail',
+      /* name:'project_detail', */
       component:ProjectDetail,
       props:true,
-      meta: { authOnly : true}
+      meta: { authOnly : true},
+      children: [
+        {
+          path:'taskforproject',
+          component:TaskforProject,
+          props:true,
+        }
+      ]
     },
     {
       path:'/projectedit/:projectId',

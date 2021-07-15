@@ -57,7 +57,7 @@
                 },
             completeTask(id) {
                 this.task.done = 1;
-                axios.put('/api/tasks/detail/'+this.taskId,this.task)
+                axios.put('/api/tasks/'+this.taskId,this.task)
                 .then((res) => {
                     console.log(res);
                 })

@@ -11,7 +11,7 @@
             </tr>
             </thead>
             <tbody>
-                    <router-link v-bind:to="{ name: 'project_detail',params: {projectId:project.id}}" v-for="(project, index) in sort_projects" :key="index" tag="tr">
+                    <router-link v-bind:to="`projectdetail/${ project.id } /taskforproject`" v-for="(project, index) in sort_projects" :key="index" tag="tr">
                     <td>{{ project.content }}</td>
                     <td>{{ project.project_leader }}</td>
                     <td>{{ project.time_limit }}</td>
