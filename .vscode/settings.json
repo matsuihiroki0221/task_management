@@ -3,11 +3,14 @@
     "Laravel",
     "Taskfor",
     "Taskin",
+    "adduser",
+    "addusername",
     "allforproject",
     "allinproject",
     "projectedit",
     "projectid",
     "taskforproject",
+    "taskid",
     "taskinproject"
   ]
 }

@@ -38,11 +38,11 @@ export default {
                             .then(res => {
                                 this.user = res.data;
                                 this.$store.commit('setuser' , this.user);
-                                console.log(this.user)
+                                console.log(this.user);
+                                this.$router.push({ name: 'Home'});
                             })
-                                .then(this.$router.push({ name: 'Home'}))
                         }
-                        this.getUserMessage = 'ログインに失敗しました。'
+                        /* this.getUserMessage = 'ログインに失敗しました。' */
                     })
                     .catch((err) => {
                         console.log(err);

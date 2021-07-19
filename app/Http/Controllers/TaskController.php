@@ -38,6 +38,9 @@ class TaskController extends Controller
     }
     public function detail(task $task)  {
         Log::info('Showing the user profile for user: '.$task);
+        $adduser = User::where('id',$task['user_id'])->get('name');
+                Log::info('Showing the addusername for detail: '.$adduser);
+                $task->update(['name' => $adduser->name]);
         return $task;
     }
     public function store(Request $request){

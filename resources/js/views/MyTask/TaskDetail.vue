@@ -3,6 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-sm-6">
                 <form>
+                    <div class= "form-group row border-bottom">
+                        <label for="user_name">Person in charge</label>
+                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="user_name" v-model="task.user_name">
+                    </div>
                     <div class="form-group row border-bottom">
                         <label for="title" class="col-sm-3 col-form-label">Title</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="title"
