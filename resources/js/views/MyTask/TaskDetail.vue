@@ -33,11 +33,16 @@
                 </form>
             </div>
         </div>
+        <Comment></Comment>
     </div>
 </template>
 
 <script>
+    import Comment from './../../comment/Comment';
     export default {
+        components: {
+            Comment
+        },
         props: ['taskId'],
         data: function () {
             return {

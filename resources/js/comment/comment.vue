@@ -11,7 +11,7 @@
 
 <script>
   export default {
-    props:[taskId],
+    /* props:[taskId], */
     data: function () {
       return {
         commentnumber:0,
