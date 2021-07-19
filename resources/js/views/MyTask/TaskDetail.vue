@@ -2,9 +2,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
+                <h1>Task Detail</h1>
                 <form>
                     <div class= "form-group row border-bottom">
-                        <label for="user_name">Person in charge</label>
+                        <label for="user_name" class="col-sm-3 col-form-label">Person in charge</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="user_name" v-model="task.user_name">
                     </div>
                     <div class="form-group row border-bottom">
@@ -22,7 +23,7 @@
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="person-in-charge"
                             v-model="task.time_limit">
                     </div>
-                <div>
+                <div v-if="task.user_id == this.$store.state.user.id">
                     <button v-if="task.done == 0" class="btn btn-primary" v-on:click="completeTask(task.id) ">Complete</button>
                     <router-link v-bind:to="{name: 'task_edit',  params: {taskId:taskId}}">
                         <button class="btn btn-success">Edit</button>

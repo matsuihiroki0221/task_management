@@ -61,7 +61,14 @@ const router =  new Router ({
       name: 'task_detail',
       component:TaskDetail,
       props: true,
-      meta: { authOnly : true}
+      meta: { authOnly : true},
+      children: [
+        {
+          path:'comment',
+          component:Comment,
+          props:true
+        },
+      ]
     },
     {
       path:'/everytasklist/:projectId',

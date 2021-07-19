@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Log;
 
 class TaskController extends Controller
 {
-    public function index(Request $request,$userid)
+    public function index($userid)
     {
         Log::info('Showing the user profile for user:'.$userid);
         $tasks = task::where('user_id', $userid )
@@ -34,13 +34,16 @@ class TaskController extends Controller
         ->where('project_id',$projectid)
         ->where('done','0')
         ->get(["tasks.id as taskid","name",'title','time_limit','importance','title']);
+        Log::info('Showing the tasks join userinfo for user: '.$tasks);
         return $tasks;
     }
     public function detail(task $task)  {
-        Log::info('Showing the user profile for user: '.$task);
-        $adduser = User::where('id',$task['user_id'])->get('name');
-                Log::info('Showing the addusername for detail: '.$adduser);
-                $task->update(['name' => $adduser->name]);
+        Log::info('Showing the task before join: '.$task);
+        Log::info('Showing the type of task: '.gettype($task));
+        $getusername = User::select('name')->where('id',$task->user_id)->first();
+        Log::info('Showing the getusername: '.$getusername);
+        $task->user_name = $getusername->name;
+        Log::info('showing the task join username :'.$task);
         return $task;
     }
     public function store(Request $request){
