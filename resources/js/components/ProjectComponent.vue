@@ -5,14 +5,14 @@
         <table class="table table-hover">
             <thead class="thead-light">
             <tr>
-                <th scope="col" style="width: 50%" @click="sortBy('content')" :class="addClass('content')">Content</th>
+                <th scope="col" style="width: 50%" @click="sortBy('content')" :class="addClass('title')">Title</th>
                 <th scope="col" style="wedth: 25%" @click="sortBy('project_leader')" :class="addClass('project_leader')">Project Leader</th>
                 <th scope="col" style="width: 25%" @click="sortBy('time_limit')" :class="addClass('time_limit')">Time Limit</th>
             </tr>
             </thead>
             <tbody>
                     <router-link v-bind:to="`projectdetail/${ project.id } /taskforproject`" v-for="(project, index) in sort_projects" :key="index" tag="tr">
-                    <td>{{ project.content }}</td>
+                    <td>{{ project.title }}</td>
                     <td>{{ project.project_leader }}</td>
                     <td>{{ project.time_limit }}</td>
                     </router-link>
