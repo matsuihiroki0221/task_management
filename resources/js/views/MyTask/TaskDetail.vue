@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center  mb-3">
             <div class="col-sm-6">
                 <h1>Task Detail</h1>
                 <form>
@@ -33,7 +33,7 @@
                 </form>
             </div>
         </div>
-        <Comment></Comment>
+        <Comment taskId="1"></Comment>
     </div>
 </template>
 
