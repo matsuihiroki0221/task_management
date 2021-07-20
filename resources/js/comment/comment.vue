@@ -2,6 +2,12 @@
   <div class="container">
     <div class= "row justify-content-center">
       <div class="col-sm-6">
+        <form v-on:submit.prevent="submit">
+          <div class="form-group row">
+            <label for="content" class="col-sm-3 col-form-label">Content</label>
+            <input type="text" class="col-sm-9 form-control" id="content">
+          </div>
+        </form>
         <h1>{{ commentnumber }}件のコメント</h1>
         <div class="media my-5">
           <div v-for="(comment, index) in comments" :key="index">
