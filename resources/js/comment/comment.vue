@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class= "row justify-content-center">
-        <h1>{{ sumcomment }}件のコメント</h1>
         <div class="media my-5">
+          <h1>{{ sumcomment }}件のコメント</h1>
           <div v-for="(comment, index) in comments" :key="index">
             <div></div>
             <div style = "border: solid 3px #00" class="">{{ comment.user_id}}</div>
