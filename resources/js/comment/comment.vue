@@ -49,14 +49,20 @@
           this.task = res.data;
           console.log(res);
         })
+        .catch((err) => {
+                        console.log(err);
+                    })
       },
       deletecomment(id) {
-                axios.delete('/api/comments/'+ id)
+                axios.delete('/api/comments/delete/'+ id)
                 .then((res) => {
                     this.getTask();
                     console.log(res);
-                    });
                     this.$router.go({path: this.$router.currentRoute.path, force:true})
+                    })
+                     .catch((err) => {
+                        console.log(err);
+                    });
                 },
     },
     computed:{

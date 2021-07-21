@@ -46,9 +46,10 @@ Route::get('/completes/{userid}',[TaskController::class,'completeindex']);
 
 //commentAPI
 Route::post('/comments/store',[CommentController::class,'store']);
+Route::delete('/comments/delete/{comment}', [CommentController::class,'delete']);
 Route::get('/comments/{taskid}',[CommentController::class,'index']);
 Route::put('/comments/{comment}',[CommentController::class,'update']);
-Route::delete('/comments/{comment}', [CommentController::class,'delete']);
+Route::delete('/comments/delete/{comment}', [CommentController::class,'delete']);
 
 //replyAPI
 Route::post('/reply/store',[CommentController::class,'store']);
