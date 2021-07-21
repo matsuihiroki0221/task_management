@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center  mb-3">
-            <div class="col-sm-6">
+            <div class="col-sm-8">
                 <h1>Task Detail</h1>
                 <form>
                     <div class= "form-group row border-bottom">
@@ -31,14 +31,23 @@
                     <button class="btn btn-danger" v-on:click="deleteTask(task.id)">Delete</button>
                 </div>
                 </form>
+                <!-- コメント入力 -->
+                <form v-on:submit.prevent="submit">
+                    <div class="form-group row">
+                        <label for="content" class="col-sm-3 col-form-label">Contentを入力する</label>
+                        <input type="text" class="col-sm-9 form-control" id="content" placeholder="コメントを入力してください" v-model="addcomment.comment_body">
+                    </div>
+                    <button v-if="addcomment.comment_body" type="submit" class="btn btn-primary">コメントを追加</button>
+                </form>
             </div>
         </div>
-        <Comment taskId="1"></Comment>
+        <div class="container">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 
 <script>
-    import Comment from './../../comment/Comment';
     export default {
         components: {
             Comment
@@ -46,10 +55,24 @@
         props: ['taskId'],
         data: function () {
             return {
-                task: {}
+                task: {},
+                addcomment:{
+                    comment_body:'',
+                    user_id:'',
+                    task_id:'',
+                },
             }
         },
         methods:{
+            submit() {
+                    this.addcomment.user_id = this.task.user_id;
+                    this.addcomment.task_id = this.task.id;
+                    console.log(this.addcomment);
+                    axios.post('/api/comments/store',this.addcomment)
+                    .then((res) => {
+                    this.$router.go({path: this.$router.currentRoute.path, force:true})
+                    })
+                },
             getTask() {
                 axios.get('/api/tasks/' + this.$route.params.taskId)
                 .then((res) => {

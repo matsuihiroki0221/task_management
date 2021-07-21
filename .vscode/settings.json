@@ -7,11 +7,15 @@
     "addusername",
     "allforproject",
     "allinproject",
+    "commentid",
+    "getcomment",
     "getusername",
     "projectedit",
     "projectid",
+    "storetask",
     "taskforproject",
     "taskid",
-    "taskinproject"
+    "taskinproject",
+    "userinfo"
   ]
 }

@@ -3,6 +3,7 @@
 use App\Http\controllers\TaskController;
 use App\Http\controllers\ProjectController;
 use App\Http\controllers\LoginController;
+use App\Http\controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,3 +43,16 @@ Route::put('/projects/{project}',[ProjectController::class,'update']);
 Route::delete('/projects/{project}',[ProjectController::class,'delete']);
 //CompleteController
 Route::get('/completes/{userid}',[TaskController::class,'completeindex']);
+
+//commentAPI
+Route::post('/comments/store',[CommentController::class,'store']);
+Route::get('/comments/{taskid}',[CommentController::class,'index']);
+Route::put('/comments/{comment}',[CommentController::class,'update']);
+Route::delete('/comments/{comment}', [CommentController::class,'delete']);
+
+//replyAPI
+Route::post('/reply/store',[CommentController::class,'store']);
+Route::get('/reply/{commentid}',[CommentController::class,'index']);
+Route::put('/reply/{reply}',[CommentController::class,'update']);
+Route::delete('/reply/{reply}', [CommentController::class,'delete']);
+

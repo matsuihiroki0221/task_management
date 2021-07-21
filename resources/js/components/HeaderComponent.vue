@@ -5,7 +5,7 @@
                 <router-link v-bind:to="{name: 'Home'}">
                     <span class="navbar-brand mb-0 h1">Your Task Management</span>
                 </router-link>
-                <div>
+                <div v-if="this.$store.state.user">
                     <router-link v-bind:to="{name: 'task_create'}">
                         <button class="btn btn-success"> Task Add</button>
                     </router-link>

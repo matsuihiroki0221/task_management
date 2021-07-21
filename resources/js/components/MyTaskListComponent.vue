@@ -12,7 +12,7 @@
             </tr>
             </thead>
             <tbody>
-                <router-link v-bind:to="{ name: 'task_detail',params: {taskId:task.id}}" v-for="(task,index) in sort_tasks" :key="index"  v-bind:class="yellowcolor(task.time_limit)" tag="tr">
+                <router-link v-bind:to="`taskdetail/${ task.id } /comment`" v-for="(task,index) in sort_tasks" :key="index"  v-bind:class="yellowcolor(task.time_limit)" tag="tr">
                     <td>{{  task.title }}</td>
                     <td>{{ task.content }}</td>
                     <td>{{ task.importance }}</td>

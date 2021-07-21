@@ -11,6 +11,7 @@ import ProjectCreate from "./views/Project/ProjectCreate";
 import ProjectDetail from "./views/Project/ProjectDetail";
 import ProjectEdit from "./views/Project/ProjectEdit";
 import TaskforProject from "./components/TaskforProject";
+import comment from "./comment/comment";
 import Login from "./Login/Login";
 import About from "./Login/About";
 Vue.use(Router);
@@ -62,6 +63,13 @@ const router =  new Router ({
       component:TaskDetail,
       props: true,
       meta: { authOnly : true},
+      children: [
+        {
+          path:'comment',
+          component:comment,
+          props:true,
+        }
+      ]
     },
     {
       path:'/everytasklist/:projectId',
