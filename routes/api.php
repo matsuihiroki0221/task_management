@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\controllers\TaskController;
-use App\Http\controllers\ProjectController;
-use App\Http\controllers\LoginController;
-use App\Http\controllers\CommentController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
