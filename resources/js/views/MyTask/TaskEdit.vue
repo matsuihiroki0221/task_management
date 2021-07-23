@@ -11,7 +11,7 @@
                                 <span class="text-danger"> {{ errors[0] }}</span>
                             </div>
                         </validation-provider>
-                        <validation-provider name="projectTitle" rules="required" v-slot="{ errors }"> 
+                        <validation-provider name="projectTitle" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
                                 <label for="projectTitle" class="col-sm-3 col-form-label">Project Title</label>
                                 <select v-model="task.project_title" id="project_title" class="col-sm-9 form-control"  placeholder="プロジェクトを選択してください">
@@ -45,7 +45,7 @@
                         <validation-provider name="importance" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
                                 <label for="importance" class="col-sm-3 col-form-label">Importance</label>
-                                 <select v-model="task.importance" class="col-sm-9 form-control">
+                                <select v-model="task.importance" class="col-sm-9 form-control">
                                     <option>大</option>
                                     <option>中</option>
                                     <option>小</option>

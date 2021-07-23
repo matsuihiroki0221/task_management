@@ -12,14 +12,12 @@
             </tr>
             </thead>
             <tbody>
-                <tr v-for="(task,index) in sort_tasks" :key="index">
-                <td>{{  task.title }}</td>
-                <router-link v-bind:to="{ name: 'task_detail',params: {taskId:task.id}}">
-                <td>{{ task.content }}</td>
+                <router-link v-bind:to="`taskdetail/${ task.id } /comment`" v-for="(task,index) in sort_tasks" :key="index" tag="tr">
+                    <td>{{  task.title }}</td>
+                    <td>{{ task.content }}</td>
+                    <td>{{ task.importance }}</td>
+                    <td> {{ task.time_limit }}</td>
                 </router-link>
-                <td>{{ task.importance }}</td>
-                <td> {{ task.time_limit }}</td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -57,7 +55,7 @@
                 };
             },
             getTasks() {
-                axios.get('/api/completes').then((res) => {
+                axios.get('/api/completes/' + this.$store.state.user.id).then((res) => {
                     this.tasks = res.data;
                     console.log(res)
                 })
@@ -79,8 +77,8 @@
                                 if (desiredSort.indexOf(a[this.sort_key]) > desiredSort.indexOf(b[this.sort_key])) return 1 * set;
                                 return 0;
                             });
-                            console.log(this.sort_key);
-                            console.log(this.tasks)
+                            /* console.log(this.sort_key);
+                            console.log(this.tasks) */
                             return this.tasks;
                         }else{
                         this.tasks.sort((a,b) => {

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnToUsersTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddColumnToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->String('name');
+        Schema::create('comments', function (Blueprint $table) {
+            $table->id();
+            $table->string('comment_body');
+            $table->integer('user_id');
+            $table->integer('task_id');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +29,6 @@ class AddColumnToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('name');
-        });
+        Schema::dropIfExists('comments');
     }
 }

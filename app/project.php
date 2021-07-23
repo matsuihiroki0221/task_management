@@ -12,7 +12,6 @@ class project extends Model
         'content',
         'project_leader',
         'time_limit',
-        
 
     ];
 }

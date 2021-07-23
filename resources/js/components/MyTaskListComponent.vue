@@ -5,21 +5,19 @@
         <table class="table table-hover">
             <thead class="thead-light">
             <tr>
-                <th scope="col" style="width: 20%" @click="sortBy('title')" :class="addClass('title')">Title</th>
+                <th scope="col" style="width: 20%" @click="sortBy('title')" :class="addClass('title') ">Title</th>
                 <th scope="col" style="width: 50%" @click="sortBy('content')" :class="addClass('content')">Content</th>
                 <th scope="col" style="width: 10%" @click="sortBy('importance')" :class="addClass('importance')">Importance</th>
                 <th scope="col" style="width: 20%" @click="sortBy('time_limit')" :class="addClass('time_limit')">Time Limit</th>
             </tr>
             </thead>
             <tbody>
-                <tr v-for="(task,index) in sort_tasks" :key="index">
-                <td>{{  task.title }}</td>
-                <router-link v-bind:to="{ name: 'task_detail',params: {taskId:task.id}}">
-                <td>{{ task.content }}</td>
+                <router-link v-bind:to="`taskdetail/${ task.id } /comment`" v-for="(task,index) in sort_tasks" :key="index"  v-bind:class="yellowcolor(task.time_limit)" tag="tr">
+                    <td>{{  task.title }}</td>
+                    <td>{{ task.content }}</td>
+                    <td>{{ task.importance }}</td>
+                    <td> {{ task.time_limit }}</td>
                 </router-link>
-                <td>{{ task.importance }}</td>
-                <td> {{ task.time_limit }}</td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -31,6 +29,9 @@
     .desc::after {
         content:"↑";
     }
+    .bg-color {
+        background-color: yellow;
+    }
 </style>
 <script>
     export default {
@@ -40,9 +41,17 @@
                 tasks:[],
                 sort_key: "",
                 sort_asc: true,
+                isBackground_color: false,
+                today: "",
             }
         },
         methods: {
+            yellowcolor(timelimit) {
+                let newtimelimit = new Date(timelimit);
+                if((newtimelimit- this.today)/86400000  < 7) {
+                    return "bg-color";
+                }
+            },
             sortBy(key) {
                 this.sort_key === key
                     ? (this.sort_asc = !this.sort_asc)
@@ -56,24 +65,26 @@
                 };
             },
             getTasks() {
-                axios.get('/api/tasks').then((res) => {
+                axios.get('/api/tasks/list/' + this.$store.state.user.id)
+                .then((res) => {
                     this.tasks = res.data;
                     console.log(res);
-                    let today = new Date();
-                    console.log(today);
-                    console.log(this.tasks)
+                    this.today = new Date();
+                    /* console.log(this.today);
+                    console.log(this.tasks); */
                     let Tasklist = this.tasks;
                     for (let Task of Tasklist) {
-                        console.log(Task);
+                        /*console.log(Task); */
                         let tasklimit = new Date(Task.time_limit);
-                        console.log(tasklimit);
-                        let daysleft = (tasklimit - today)/86400000;
+                        /*console.log(tasklimit);*/
+                        let daysleft = (tasklimit - this.today)/86400000;
                             if(daysleft < 7 ){
                             alert(`${Task.title}の期限が一週間を切っています`);
                             console.log(daysleft);
                             };
                 };
-                })
+                }
+                )
                 .catch((err) => {
                     console.log(err)
                 });
@@ -88,13 +99,13 @@
                     this.sort_asc ? (set = 1) : (set = -1);
                         if (this.sort_key == importance) {
                             this.tasks.sort((a,b) => {
-                                console.log(this.tasks.importance);
+                                /* console.log(this.tasks.importance); */
                                 if (desiredSort.indexOf(a[this.sort_key]) < desiredSort.indexOf(b[this.sort_key])) return -1 * set;
                                 if (desiredSort.indexOf(a[this.sort_key]) > desiredSort.indexOf(b[this.sort_key])) return 1 * set;
                                 return 0;
                             });
-                            console.log(this.sort_key);
-                            console.log(this.tasks)
+                            /* console.log(this.sort_key);
+                            console.log(this.tasks) */
                             return this.tasks;
                         }else{
                         this.tasks.sort((a,b) => {
@@ -108,10 +119,10 @@
                     return this.tasks;
                 }
             },
-
         },
         mounted() {
                 this.getTasks();
+                /* this.getUser(); */
         }
     }
 </script>

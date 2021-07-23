@@ -1,6 +1,9 @@
 <?php
-use App\Http\controllers\TaskController;
-use App\Http\controllers\ProjectController;
+
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,20 +18,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-//TaskContoroller
-Route::get('/tasks',[TaskController::class,'index']);
-Route::post('/tasks',[TaskController::class,'store']);
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+  return $request->user();
+});
+/* Route::get('/user', function (Request $request) {
+return $request->user();
+})->middleware('auth:admin'); */
+
+
+Route::post('/login',[App\Http\Controllers\LoginController::class,'login']);
+Route::post('/logout',[App\Http\Controllers\LoginController::class,'logout']);
+//TaskController
+Route::get('/tasks/list/{userid}',[TaskController::class,'index']);
+Route::get('/tasks/allforproject/{projectid}',[TaskController::class,'allforproject']);
+Route::post('/tasks/store',[TaskController::class,'store']);
 Route::get('/tasks/{task}',[TaskController::class,'detail']);
 Route::put('/tasks/{task}',[TaskController::class,'update']);
 Route::delete('/tasks/{task}',[TaskController::class,'delete']);
-//pojectContoroller
+//pojectController
 Route::get('/projects',[ProjectController::class,'index']);
 Route::post('/projects',[ProjectController::class,'store']);
 Route::get('/projects/{project}',[ProjectController::class,'detail']);
-Route::put('/projects/{ project }',[ProjectController::class,'update']);
+Route::put('/projects/{project}',[ProjectController::class,'update']);
 Route::delete('/projects/{project}',[ProjectController::class,'delete']);
-//CompleteContoroller
-Route::get('/completes',[TaskController::class,'completeindex']);
+//CompleteController
+Route::get('/completes/{userid}',[TaskController::class,'completeindex']);
+
+//commentAPI
+Route::post('/comments/store',[CommentController::class,'store']);
+Route::delete('/comments/delete/{comment}', [CommentController::class,'delete']);
+Route::get('/comments/{taskid}',[CommentController::class,'index']);
+Route::put('/comments/{comment}',[CommentController::class,'update']);
+Route::delete('/comments/delete/{comment}', [CommentController::class,'delete']);
+
+//replyAPI
+Route::post('/reply/store',[CommentController::class,'store']);
+Route::get('/reply/{commentid}',[CommentController::class,'index']);
+Route::put('/reply/{reply}',[CommentController::class,'update']);
+Route::delete('/reply/{reply}', [CommentController::class,'delete']);
+

@@ -9,6 +9,7 @@ import HeaderComponent from "./components/HeaderComponent";
 window.Vue = require('vue').default;
 import App from "./App.vue";
 import router from "./router";
+import store from "./store/auth";
 import MyTaskListComponent from "./components/MyTaskListComponent";
 import ProjectComponent from "./components/ProjectComponent";
 import CompleteTaskComponent from "./components/CompleteTaskComponent";
@@ -48,7 +49,7 @@ const app = new Vue({
     render:h=>h(App),
     el: '#app',
     router,
-    
+    store,
     },
     {
       data: ()=> ({

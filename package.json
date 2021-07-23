@@ -15,7 +15,7 @@
         "jquery": "^3.6",
         "laravel-mix": "^6.0.24",
         "lodash": "^4.17.19",
-        "mix": "^0.0.1",
+        "mix": "0.0.1",
         "popper.js": "^1.16.1",
         "postcss": "^8.1.14",
         "resolve-url-loader": "^4.0.0",
@@ -23,11 +23,23 @@
         "sass-loader": "^11.0.1",
         "vue": "^2.6.12",
         "vue-loader": "^15.9.5",
-        "vue-template-compiler": "^2.6.12"
+        "vue-template-compiler": "^2.6.12",
+        "webpack-cli": "^4.7.2"
     },
     "dependencies": {
+        "constant": "^1.0.2",
+        "fs": "^0.0.1-security",
+        "path": "^0.12.7",
+        "stream": "^0.0.2",
         "vee-validate": "^3.4.9",
-        "vue-router": "^3.5.1",
-        "vuex": "^3.6.2"
+        "vue-router": "^3.5.2",
+        "vuex": "^3.6.2",
+        "vuex-persistedstate": "^4.0.0-beta.3",
+        "webpack": "^5.44.0"
+    },
+    "browser": {
+        "fs": false,
+        "path": false,
+        "os": false
     }
 }
