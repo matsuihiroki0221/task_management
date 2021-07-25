@@ -10,8 +10,11 @@
               <h5 class="mt-0"> コメント</h5>
               {{comment.comment_body}}
               <div>
-                <button class="btn btn-primary" v-on:click="(comment.id) ">返信する</button>
-                <button class="btn btn-danger" v-on:click="deletecomment(comment.id)">削除する</button>
+                <button class="btn btn-primary" v-on:click="active">返信する</button>
+                <div v-if="isActive">
+                  <input type="text" class="col-sm-9 form-control" id="content" placeholder="コメントを入力してください" >
+                </div>
+                <button class="btn btn-danger" v-on:click="deletecomment(comment.commentid)">削除する</button>
               </div>
               <div class="media-body" v-for="(reply,index) in replies" :key="index">
                 <div style = "border: solid 3px #00" class="">{{ reply.reply_user_id}}</div>
@@ -33,6 +36,7 @@
         commentnumber:'',
         comments:{},
         replies:{},
+        isActive: false,
       }
     },
     methods:{
@@ -56,14 +60,17 @@
       deletecomment(id) {
                 axios.delete('/api/comments/delete/'+ id)
                 .then((res) => {
-                    this.getTask();
+                    /* this.getTask(); */
                     console.log(res);
                     this.$router.go({path: this.$router.currentRoute.path, force:true})
                     })
-                     .catch((err) => {
+                    .catch((err) => {
                         console.log(err);
                     });
                 },
+      active() {
+        this.isActive = !this.isActive;
+      }
     },
     computed:{
       sumcomment() {
