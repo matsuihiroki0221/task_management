@@ -4,7 +4,7 @@
         <h1>All Task List</h1>
         <ul class="list-group">
           <li v-for="task in tasks" :key="task.id">
-            <router-link v-bind:to="`taskdetail/${ task.id } /comment`">
+            <router-link v-bind:to="`taskdetail/${ task.id } /comment`" >
             {{task.title}}-{{task.time_limit}}-{{task.importance}}-{{task.name}}
             </router-link>
           </li>

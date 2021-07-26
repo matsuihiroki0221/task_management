@@ -8,6 +8,7 @@
     "allforproject",
     "allinproject",
     "commentid",
+    "createreply",
     "getcomment",
     "getusername",
     "projectedit",

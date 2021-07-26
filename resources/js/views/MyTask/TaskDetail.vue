@@ -1,12 +1,16 @@
 <template>
     <div class="container">
         <div class="row justify-content-center  mb-3">
-            <div class="col-sm-8">
+            <div class="col-sm-9">
                 <h1>Task Detail</h1>
                 <form>
                     <div class= "form-group row border-bottom">
                         <label for="user_name" class="col-sm-3 col-form-label">Person in charge</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="user_name" v-model="task.user_name">
+                    </div>
+                    <div class= "form-group row border-bottom">
+                        <label for="project_title" class="col-sm-3 col-form-label">Project</label>
+                        <input type="text" class="col-sm-9 form-control-plaintext" readonly id="project_title" v-model="task.project_title">
                     </div>
                     <div class="form-group row border-bottom">
                         <label for="title" class="col-sm-3 col-form-label">Title</label>
@@ -70,7 +74,8 @@
                     console.log(this.addcomment);
                     axios.post('/api/comments/store',this.addcomment)
                     .then((res) => {
-                    this.$router.go({path: this.$router.currentRoute.path, force:true})
+                        console.log(res);
+                        this.$router.go({path: this.$router.currentRoute.path, force:true})
                     })
                 },
             getTask() {

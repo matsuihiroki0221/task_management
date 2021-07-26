@@ -97,8 +97,8 @@
                     console.log(this.task);
                     axios.post('/api/tasks/store',this.task)
                     .then((res)=> {
-                        this.$router.push({name:'Home'});
                         console.log(res);
+                        this.$router.push({name:'Home'});
                     });
                 }
             },
