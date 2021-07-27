@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <h1>Project List</h1>
+        <h1>プロジェクト一覧</h1>
         <h2>{{ sort_key }}:{{ sort_asc ?'昇順 ':'降順' }}</h2>
         <table class="table table-hover">
             <thead class="thead-light">
             <tr>
-                <th scope="col" style="width: 50%" @click="sortBy('content')" :class="addClass('title')">Title</th>
-                <th scope="col" style="wedth: 25%" @click="sortBy('project_leader')" :class="addClass('project_leader')">Project Leader</th>
-                <th scope="col" style="width: 25%" @click="sortBy('time_limit')" :class="addClass('time_limit')">Time Limit</th>
+                <th scope="col" style="width: 50%" @click="sortBy('content')" :class="addClass('title')">タイトル</th>
+                <th scope="col" style="wedth: 25%" @click="sortBy('project_leader')" :class="addClass('project_leader')">プロジェクトリーダー</th>
+                <th scope="col" style="width: 25%" @click="sortBy('time_limit')" :class="addClass('time_limit')">期日</th>
             </tr>
             </thead>
             <tbody>

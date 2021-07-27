@@ -1,14 +1,14 @@
 <template>
     <div class="container">
-        <h1>Done Task List</h1>
+        <h1>完了済タスク</h1>
         <h2>{{sort_key}}: {{ sort_asc ? '昇順' : '降順' }} </h2>
         <table class="table table-hover">
             <thead class="thead-light">
             <tr>
-                <th scope="col" style="width: 20%" @click="sortBy('title')" :class="addClass('title')">Title</th>
-                <th scope="col" style="width: 50%" @click="sortBy('content')" :class="addClass('content')">Content</th>
-                <th scope="col" style="width: 10%" @click="sortBy('importance')" :class="addClass('importance')">Importance</th>
-                <th scope="col" style="width: 20%" @click="sortBy('time_limit')" :class="addClass('time_limit')">Time Limit</th>
+                <th scope="col" style="width: 20%" @click="sortBy('title')" :class="addClass('title')">タイトル</th>
+                <th scope="col" style="width: 50%" @click="sortBy('content')" :class="addClass('content')">内容</th>
+                <th scope="col" style="width: 15%" @click="sortBy('importance')" :class="addClass('importance')">重要度</th>
+                <th scope="col" style="width: 15%" @click="sortBy('time_limit')" :class="addClass('time_limit')">期日</th>
             </tr>
             </thead>
             <tbody>

@@ -59,7 +59,7 @@ const router =  new Router ({
     },
     {
       path:'/taskdetail/:taskId',
-      name: 'task_detail',
+      /* name: 'task_detail', */
       component:TaskDetail,
       props: true,
       meta: { authOnly : true},
@@ -67,6 +67,7 @@ const router =  new Router ({
         {
           path:'comment',
           component:comment,
+          name:'comment',
           props:true,
         }
       ]
