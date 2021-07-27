@@ -28,7 +28,7 @@
                     <div>
                         <button v-if="project.done == 1" class="btn btn-primary" v-on:click="completeProject(project.id)">編集する</button>
                         <router-link v-bind:to="{name: 'project_edit',params:{projectId:projectId} }">
-                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-success">修正する</button>
                         </router-link>
                         <button class="btn btn-danger" v-on:click="deleteProject(project.id)">削除する</button>
                     </div>
