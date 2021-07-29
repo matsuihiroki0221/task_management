@@ -54,6 +54,7 @@ Route::delete('/comments/delete/{comment}', [CommentController::class,'delete'])
 
 //replyAPI
 Route::post('/reply/store',[ReplyController::class,'store']);
+Route::get('/reply/sumreply/{commentid}',[ReplyController::class,'getsumofcomment']);
 Route::get('/reply/{commentid}',[ReplyController::class,'index']);
 Route::put('/reply/{reply}',[ReplyController::class,'update']);
 Route::delete('/reply/{reply}', [ReplyController::class,'delete']);

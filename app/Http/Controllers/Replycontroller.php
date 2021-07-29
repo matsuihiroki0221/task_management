@@ -34,4 +34,9 @@ class ReplyController extends Controller
 
         return  $reply;
     }
+    public function getsumofcomment($commentid)
+    {
+        $count = Reply::where('reply_comment_parent',$commentid)->count();
+        return $count;
+    }
 }

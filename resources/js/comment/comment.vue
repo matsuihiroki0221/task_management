@@ -6,10 +6,16 @@
           <h1>{{ sumcomment }}件のコメント</h1>
           <div v-for="(comment, index) in comments" :key="index" v-on:click="getReplies(comment)">
             <div v-on:click="turnOn(comment)">
-              <div style = "" class="">{{ comment.name}}さん</div>
+              <div class="mx-2">
+                <h5>{{ comment.name}}さん</h5>
                 <h5 class="">{{comment.comment_body}}</h5>
+                <h6 class="text-info">＊{{getreplynum(comment.commentid)}}件の返信があります</h6>
+              </div>
+                <!-- <div v-if="reply">
+
+                </div> -->
             </div>
-                <div>
+                <div class="mx-2">
                   <!-- コメント返信 -->
                   <button v-on:click="active(comment)" style="width:40px;height:20px ;font-size: 12px">返信</button>
                   <button v-on:click.prevent="deletecomment(comment.commentid)" style="width:40px;height:20px ;font-size: 12px">削除</button>
@@ -22,16 +28,15 @@
                 </div>
                 <!-- reply表示 -->
                 <div v-if="comment.commentid == targetId && isActiveforreply">
-                  <div class="mx-5">返信一覧</div>
+                  <div class="mx-4">返信一覧</div>
                   <div class="mx-5" v-for="(reply,index) in replies" :key="index" style="">
                     <div style = "" class="">{{ reply.name}}さん</div>
                     <h5 class="">{{ reply.reply_body }}</h5>
                       <div>
-                        <button v-on:click.prevent="deletereply(reply.replyid)" style="width:40px;height:20px ;font-size: 12px">削除</button>
+                        <button v-if="reply.reply_user_id === $store.state.user.id" v-on:click.prevent="deletereply(reply.replyid)" style="width:40px;height:20px ;font-size: 12px">削除</button>
                       </div>
+                      <hr style="border: 0; border-bottom: 1px dashed #ccc; background: #999;">　
                       <!-- reply for reply -->
-                      <div>
-                      </div>
                   </div>
                 </div>
             <hr>
@@ -120,16 +125,16 @@
           })
           .catch((err) => {
           console.log(err);
-          });
-      }
-    },
+          })
+          },
     computed:{
       sumcomment() {
         return Object.keys(this.comments).length;
-      },
+      }
     },
     mounted() {
       this.getComment();
     }
+  }
   }
 </script>
