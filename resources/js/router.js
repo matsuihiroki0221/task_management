@@ -113,6 +113,7 @@ router.beforeEach((to, from, next) => {
           next("/");
       } else {
           next();
+          console.log(to);
       }
   } else if (to.matched.some(record => record.meta.guestOnly)) {
       if (isLoggedIn()) {

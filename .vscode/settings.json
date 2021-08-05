@@ -24,5 +24,6 @@
     "taskid",
     "taskinproject",
     "userinfo"
-  ]
+  ],
+  "php.suggest.basic": false
 }
