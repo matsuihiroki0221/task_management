@@ -1,24 +1,45 @@
 <template>
   <div class="container">
     <div class= "row justify-content-center">
-        <div class="media my-5">
+        <div class="col-sm-9">
+          <!-- コメント表示 -->
           <h1>{{ sumcomment }}件のコメント</h1>
-          <div v-for="(comment, index) in comments" :key="index">
-            <div></div>
-            <div style = "border: solid 3px #00" class="">{{ comment.user_id}}</div>
-            <div class= "media-body">
-              <h5 class="mt-0"> コメント</h5>
-              {{comment.comment_body}}
-              <div>
-                <button class="btn btn-primary" v-on:click="(comment.id) ">返信する</button>
-                <button class="btn btn-danger" v-on:click="deletecomment(comment.id)">削除する</button>
+          <div v-for="(comment, index) in comments" :key="index" v-on:click="getReplies(comment)">
+            <div v-on:click="turnOn(comment)">
+              <div class="mx-2">
+                <h5>{{ comment.name}}さん</h5>
+                <h5 class="">{{comment.comment_body}}</h5>
+                <h6 class="text-info">＊{{getreplynum(comment.commentid)}}件の返信があります</h6>
               </div>
-              <div class="media-body" v-for="(reply,index) in replies" :key="index">
-                <div style = "border: solid 3px #00" class="">{{ reply.reply_user_id}}</div>
-                <h5 class="mt-0">返信</h5>
-                {{ reply.reply_body }}
-              </div>
+                <!-- <div v-if="reply">
+
+                </div> -->
             </div>
+                <div class="mx-2">
+                  <!-- コメント返信 -->
+                  <button v-on:click="active(comment)" style="width:40px;height:20px ;font-size: 12px">返信</button>
+                  <button v-on:click.prevent="deletecomment(comment.commentid)" style="width:40px;height:20px ;font-size: 12px">削除</button>
+                  <div v-if="isActive && comment.commentid == targetIdforcomment">
+                    <form v-on:submit.prevent="createreply(comment)">
+                      <input type="text" class="col-sm-9 form-control" id="content" placeholder="コメントを入力してください" v-model="addreply.reply_body">
+                      <button v-if="addreply.reply_body" type="submit" class="btn btn-primary">送信</button>
+                    </form>
+                  </div>
+                </div>
+                <!-- reply表示 -->
+                <div v-if="comment.commentid == targetId && isActiveforreply">
+                  <div class="mx-4">返信一覧</div>
+                  <div class="mx-5" v-for="(reply,index) in replies" :key="index" style="">
+                    <div style = "" class="">{{ reply.name}}さん</div>
+                    <h5 class="">{{ reply.reply_body }}</h5>
+                      <div>
+                        <button v-if="reply.reply_user_id === $store.state.user.id" v-on:click.prevent="deletereply(reply.replyid)" style="width:40px;height:20px ;font-size: 12px">削除</button>
+                      </div>
+                      <hr style="border: 0; border-bottom: 1px dashed #ccc; background: #999;">　
+                      <!-- reply for reply -->
+                  </div>
+                </div>
+            <hr>
           </div>
         </div>
     </div>
@@ -33,9 +54,21 @@
         commentnumber:'',
         comments:{},
         replies:{},
+        isActive: false,
+        addreply: {
+          reply_body:"",
+          reply_user_id:this.$store.state.user.id,
+          reply_comment_parent:"",
+        },
+        targetId:"",
+        targetIdforcomment:"",
+        isActiveforreply:false,
       }
     },
     methods:{
+      turnOn(comment) {
+        this.targetId = comment.commentid;
+      },
       getComment() {
         axios.get('/api/comments/' + this.taskId)
         .then((res) => {
@@ -43,28 +76,57 @@
           console.log(res);
         })
       },
-      getReplies() {
-        axios.get('/api/replies/' + this.comment.id)
+      getReplies(comment) {
+        axios.get('/api/reply/' + comment.commentid)
         .then((res) => {
-          this.task = res.data;
+          this.replies = res.data;
+          this.isActiveforreply = !this.isActiveforreply;
           console.log(res);
         })
         .catch((err) => {
-                        console.log(err);
-                    })
+            console.log(err);
+          })
       },
       deletecomment(id) {
-                axios.delete('/api/comments/delete/'+ id)
-                .then((res) => {
-                    this.getTask();
-                    console.log(res);
-                    this.$router.go({path: this.$router.currentRoute.path, force:true})
-                    })
-                     .catch((err) => {
-                        console.log(err);
-                    });
-                },
-    },
+          axios.delete('/api/comments/delete/'+ id)
+          .then((res) => {
+           /* this.getTask(); */
+          console.log(res);
+          this.$router.go({path: this.$router.currentRoute.path, force:true})
+          })
+          .catch((err) => {
+          console.log(err);
+          });
+          },
+      deletereply(id) {
+        axios.delete('/api/reply/'+ id)
+          .then((res) => {
+           /* this.getTask(); */
+          console.log(res);
+          this.$router.go({path: this.$router.currentRoute.path, force:true})
+          })
+          .catch((err) => {
+          console.log(err);
+          });
+      },
+      active(comment) {
+        this.isActive = !this.isActive;
+        this.targetIdforcomment = comment.commentid;
+      },
+      createreply(comment) {
+          console.log(comment);
+          /* this.addreply.reply_user_id = this.$store.state.user.id; */
+          this.addreply.reply_comment_parent = comment.commentid;
+          console.log(this.addreply);
+          axios.post('/api/reply/store',this.addreply)
+          .then((res) => {
+            console.log(res.data);
+          this.$router.go({path: this.$router.currentRoute.path, force:true});
+          })
+          .catch((err) => {
+          console.log(err);
+          })
+          },
     computed:{
       sumcomment() {
         return Object.keys(this.comments).length;
@@ -73,5 +135,6 @@
     mounted() {
       this.getComment();
     }
+  }
   }
 </script>

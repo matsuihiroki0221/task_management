@@ -33,7 +33,7 @@ export default {
                     })
                     .then((res) => {
                         if( res.data.status_code == 200 ) {
-                            localStorage.setItem("auth", "ture");
+                            localStorage.setItem("auth", "true");
                             axios.get('/api/user')
                             .then(res => {
                                 this.user = res.data;

@@ -7,10 +7,10 @@
                 </router-link>
                 <div v-if="this.$store.state.user">
                     <router-link v-bind:to="{name: 'task_create'}">
-                        <button class="btn btn-success"> Task Add</button>
+                        <button class="btn btn-success">タスク追加</button>
                     </router-link>
                     <router-link v-bind:to="{name: 'project_create'}">
-                        <button class="btn btn-success">Project ADD</button>
+                        <button class="btn btn-success">プロジェクト追加</button>
                     </router-link>
                     <router-link v-bind:to="{name: 'about'}">
                         <button class="btn btn-info">ログオフ</button>

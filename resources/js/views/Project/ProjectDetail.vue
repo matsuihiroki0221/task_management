@@ -3,34 +3,34 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-sm-6">
-                <div><h1>Project Detail</h1></div>
+                <div><h1>プロジェクト詳細</h1></div>
                 <form>
                     <div class="form-group row border-bottom">
-                        <label for="title" class="col-sm-3 col-form-label">Title</label>
+                        <label for="title" class="col-sm-3 col-form-label">タイトル</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="title"
                                 v-model="project.title">
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="content" class="col-sm-3 col-form-label">Content</label>
+                        <label for="content" class="col-sm-3 col-form-label">内容</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="content"
                                 v-model="project.content">
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="leader" class="col-sm-3 col-form-label">Leader</label>
+                        <label for="leader" class="col-sm-3 col-form-label">リーダー</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="leader"
                                 v-model="project.project_leader">
                     </div>
                     <div class="form-group row border-bottom">
-                        <label for="time-limit" class="col-sm-3 col-form-label">Time Limit</label>
+                        <label for="time-limit" class="col-sm-3 col-form-label">期日</label>
                         <input type="text" class="col-sm-9 form-control-plaintext" readonly id="time-limit"
                                 v-model="project.time_limit">
                     </div>
                     <div>
-                        <button v-if="project.done == 1" class="btn btn-primary" v-on:click="completeProject(project.id)">Complete</button>
+                        <button v-if="project.done == 1" class="btn btn-primary" v-on:click="completeProject(project.id)">編集する</button>
                         <router-link v-bind:to="{name: 'project_edit',params:{projectId:projectId} }">
-                            <button class="btn btn-success">Edit</button>
+                            <button class="btn btn-success">修正する</button>
                         </router-link>
-                        <button class="btn btn-danger" v-on:click="deleteProject(project.id)">Delete</button>
+                        <button class="btn btn-danger" v-on:click="deleteProject(project.id)">削除する</button>
                     </div>
                 </form>
             </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ReplyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -52,8 +53,9 @@ Route::put('/comments/{comment}',[CommentController::class,'update']);
 Route::delete('/comments/delete/{comment}', [CommentController::class,'delete']);
 
 //replyAPI
-Route::post('/reply/store',[CommentController::class,'store']);
-Route::get('/reply/{commentid}',[CommentController::class,'index']);
-Route::put('/reply/{reply}',[CommentController::class,'update']);
-Route::delete('/reply/{reply}', [CommentController::class,'delete']);
+Route::post('/reply/store',[ReplyController::class,'store']);
+Route::get('/reply/sumreply/{commentid}',[ReplyController::class,'getsumofcomment']);
+Route::get('/reply/{commentid}',[ReplyController::class,'index']);
+Route::put('/reply/{reply}',[ReplyController::class,'update']);
+Route::delete('/reply/{reply}', [ReplyController::class,'delete']);
 

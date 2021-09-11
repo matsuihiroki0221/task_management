@@ -8,14 +8,22 @@
     "allforproject",
     "allinproject",
     "commentid",
+    "commentplus",
+    "createreply",
     "getcomment",
+    "getreply",
+    "getsumofcomment",
     "getusername",
+    "poject",
     "projectedit",
     "projectid",
+    "replyid",
     "storetask",
+    "sumreply",
     "taskforproject",
     "taskid",
     "taskinproject",
     "userinfo"
-  ]
+  ],
+  "php.suggest.basic": false
 }

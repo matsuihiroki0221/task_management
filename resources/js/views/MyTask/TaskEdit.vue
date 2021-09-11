@@ -6,14 +6,14 @@
                     <form v-on:submit.prevent="submit">
                         <validation-provider name="userId" rules="required|numeric"  v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="id" class="col-sm-3 col-form-label">ID</label>
+                                <label for="id" class="col-sm-3 col-form-label">ユーザーID</label>
                                 <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="task.user_id">
                                 <span class="text-danger"> {{ errors[0] }}</span>
                             </div>
                         </validation-provider>
                         <validation-provider name="projectTitle" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="projectTitle" class="col-sm-3 col-form-label">Project Title</label>
+                                <label for="projectTitle" class="col-sm-3 col-form-label">プロジェクト<br>タイトル</label>
                                 <select v-model="task.project_title" id="project_title" class="col-sm-9 form-control"  placeholder="プロジェクトを選択してください">
                                     <option v-for="(project,key) of projects" v-bind:key="key">{{ project.title }}</option>
                                 </select>
@@ -22,21 +22,21 @@
                         </validation-provider>
                         <validation-provider name="title" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                    <label for="title" class="col-sm-3 col-form-label">Title</label>
+                                    <label for="title" class="col-sm-3 col-form-label">タイトル</label>
                                     <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title">
                                     <span class="text-danger">{{ errors[0] }}</span>
                             </div>
                         </validation-provider>
                         <validation-provider name="content" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="content" class="col-sm-3 col-form-label">Content</label>
+                                <label for="content" class="col-sm-3 col-form-label">内容</label>
                                 <input type="text" class="col-sm-9 form-control" id="content" v-model="task.content">
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
                         </validation-provider>
                         <validation-provider name="time_limit" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="time_limit" class="col-sm-3 col-form-label">Time limit</label>
+                                <label for="time_limit" class="col-sm-3 col-form-label">期日</label>
                                 <input type="date" class="col-sm-9 form-control" id="time_limit" v-model="task.time_limit">
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
@@ -44,7 +44,7 @@
                         </validation-provider>
                         <validation-provider name="importance" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="importance" class="col-sm-3 col-form-label">Importance</label>
+                                <label for="importance" class="col-sm-3 col-form-label">重要度</label>
                                 <select v-model="task.importance" class="col-sm-9 form-control">
                                     <option>大</option>
                                     <option>中</option>
@@ -53,7 +53,7 @@
                                 <span class="text-danger"> {{ errors[0] }}</span>
                             </div>
                         </validation-provider>
-                        <button type="submit" class="btn btn-primary" :disabled="invalid">Submit</button>
+                        <button type="submit" class="btn btn-primary" :disabled="invalid">変更する</button>
                     </form>
                 </validation-observer>
             </div>

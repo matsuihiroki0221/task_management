@@ -6,14 +6,14 @@
                     <form v-on:submit.prevent="submit">
                         <validation-provider name="userId" rules="required|numeric"  v-slot="{ errors }">
                             <div class="form-group row" >
-                                <label for="userId" class="col-sm-3 col-form-label">userId</label>
+                                <label for="userId" class="col-sm-3 col-form-label">ユーザーId</label>
                                 <input type="text" class="col-sm-9 form-control" id="userId" v-model="task.user_id" readonly>
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
                         </validation-provider>
                         <validation-provider name="project_title" rules="required" v-slot="{ errors }">
                             <div class="form-group row" >
-                                <label for="project_title" class="col-sm-3 col-form-label">Project Title</label>
+                                <label for="project_title" class="col-sm-3 col-form-label">プロジェクト<br>タイトル</label>
                                 <select v-model="task.project_title" id="project_title" class="col-sm-9 form-control" >
                                     <option v-for="(project,key) of projects" v-bind:key="key">{{ project.title }}</option>
                                 </select>
@@ -23,21 +23,21 @@
                         </validation-provider>
                         <validation-provider name="title" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="title" class="col-sm-3 col-form-label">Title</label>
+                                <label for="title" class="col-sm-3 col-form-label">タイトル</label>
                                 <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title" placeholder="タスクのタイトルを入力">
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
                         </validation-provider>
                         <validation-provider name="content" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="content" class="col-sm-3 col-form-label">Content</label>
+                                <label for="content" class="col-sm-3 col-form-label">内容</label>
                                 <input type="text" class="col-sm-9 form-control" id="content" v-model="task.content" placeholder="タスクの内容を入力">
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
                         </validation-provider>
                         <validation-provider name="time_limit" rules="required" v-slot="{ errors }">
                             <div class="form-group row">
-                                <label for="time_limit" class="col-sm-3 col-form-label">Time limit</label>
+                                <label for="time_limit" class="col-sm-3 col-form-label">期日</label>
                                 <input type="date" class="col-sm-9 form-control" id="time_limit" v-model="task.time_limit" placeholder="期限を選択してください">
                                 <span class="text-danger">{{ errors[0] }}</span>
                             </div>
@@ -53,7 +53,7 @@
                                 <span class="text-danger"> {{ errors[0] }}</span>
                             </div>
                         </validation-provider>
-                        <button type="submit" class="btn btn-primary" :disabled="invalid">Submit</button>
+                        <button type="submit" class="btn btn-primary" :disabled="invalid">タスク作成</button>
                     </form>
                 </validation-observer>
             </div>
@@ -97,8 +97,8 @@
                     console.log(this.task);
                     axios.post('/api/tasks/store',this.task)
                     .then((res)=> {
-                        this.$router.push({name:'Home'});
                         console.log(res);
+                        this.$router.push({name:'Home'});
                     });
                 }
             },
